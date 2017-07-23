@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@appandflow/touchable@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@appandflow/touchable/-/touchable-1.1.1.tgz#37cb23714019e60f1c1c88417f30afe4d901b685"
+
 "@types/async@^2.0.31":
   version "2.0.40"
   resolved "https://registry.yarnpkg.com/@types/async/-/async-2.0.40.tgz#ac02de68e66c004a61b7cb16df8b1db3a254cca9"

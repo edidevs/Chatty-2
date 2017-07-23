@@ -12,33 +12,34 @@ import PropTypes from 'prop-types';
 import React, { Component, PureComponent } from 'react';
 import randomColor from 'randomcolor';
 
+import MessageItem from '../../components/MessageItem';
 import { graphql, compose } from 'react-apollo';
 import { GROUP_QUERY } from '../../graphql/groupQuery';
 
-class Message extends PureComponent {
-  render() {
-   const message = { ...this.props.data.item};
-   const isCurrentUser = message.from.id === 1;
-    return (
-      <View key={message.id} style={styles.container}>
-        {isCurrentUser ? <View style={styles.messageSpacer} /> : undefined }
-        <View
-          style={[styles.message, isCurrentUser && styles.myMessage]}
-        >
-          <Text
-            style={[
-              styles.messageUsername,
+// class Message extends PureComponent {
+//   render() {
+//    const message = { ...this.props.data.item};
+//    const isCurrentUser = message.from.id === 1;
+//     return (
+//       <View key={message.id} style={styles.container}>
+//         {isCurrentUser ? <View style={styles.messageSpacer} /> : undefined }
+//         <View
+//           style={[styles.message, isCurrentUser && styles.myMessage]}
+//         >
+//           <Text
+//             style={[
+//               styles.messageUsername,
               
-            ]}
-          >{message.from.username}</Text>
-          <Text>{message.text}</Text>
-          <Text style={styles.messageTime}>{moment(message.createdAt).format('h:mm A')}</Text>
-        </View>
-        {!isCurrentUser ? <View style={styles.messageSpacer} /> : undefined }
-      </View>
-    );
-  }
-}
+//             ]}
+//           >{message.from.username}</Text>
+//           <Text>{message.text}</Text>
+//           <Text style={styles.messageTime}>{moment(message.createdAt).format('h:mm A')}</Text>
+//         </View>
+//         {!isCurrentUser ? <View style={styles.messageSpacer} /> : undefined }
+//       </View>
+//     );
+//   }
+// }
 
 
 class Messages extends Component {
@@ -60,9 +61,8 @@ class Messages extends Component {
         <FlatList
           data={!this.props.loading && this.props.group.messages}
           keyExtractor={this.keyExtractor}
-          renderItem={this.renderItem}
+          renderItem={MessageItem}
         />
-
         { this.props.loading ? <ActivityIndicator style={{ position: 'absolute', alignSelf: 'center', top: Dimensions.get('window').height/2 - 100 }} /> : null }
       </View>
     );
@@ -89,14 +89,8 @@ export default componentWithData;
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'stretch',
-    backgroundColor: '#e5ddd5',
+    backgroundColor: '#FFF',
     flex: 1,
-    flexDirection: 'column',
-  },
-  container1: {
-    flex: 1,
-    flexDirection: 'row',
   },
   message: {
     flex: 0.8,
